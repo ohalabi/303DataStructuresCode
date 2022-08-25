@@ -34,12 +34,11 @@ public class Pair<A, B> {
         double price = bid.getSecond();
 
         //Arrays
-        Pair<String, Double>[] holdings;
+        Pair[] holdings;
     /*
     holdings = new Pair<String,Double>[25];           // illegal; compile error
     */
         holdings = new Pair[25];   // correct, but warning about unchecked cast
         holdings[0] = new Pair<>("ORCL", 32.07);          // valid element assignment
-
     }
 }
