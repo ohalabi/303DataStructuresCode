@@ -192,7 +192,7 @@ public class CircularlyLinkedList<E> {
     // middle method
     public int size2() {
         if (tail == null) return 0;
-        Node<E> walk = tail.next;
+        Node<E> walk = tail.next;//head
         int count = 1;
         while (walk != tail) {
             count++;
@@ -208,7 +208,11 @@ public class CircularlyLinkedList<E> {
             list.addFirst(i);
             System.out.println(list.toString());
         }
-        //System.out.println("size: " + list.size2());
+
+        list.addLast(99);
+        System.out.println(list.toString());
+        System.out.println("size: " + list.size2());
     }
+
 }
 

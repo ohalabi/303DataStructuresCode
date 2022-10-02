@@ -266,6 +266,7 @@ public class DoublyLinkedList<E> {
             list.addFirst(i);
             System.out.println(list.toString());
         }
+
         //System.out.println(list.middle().getElement().toString());
     }
 } //----------- end of DoublyLinkedList class -----------

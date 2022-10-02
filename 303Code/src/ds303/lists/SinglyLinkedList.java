@@ -252,6 +252,7 @@ public class SinglyLinkedList<E> implements Cloneable {
             list.addFirst(i);
             System.out.println(list.toString());
         }
+        System.out.println("Count of nodes is " + list.getCount());
         list.removeFirst();
         System.out.println(list.toString());
         list.removeFirst();
@@ -261,11 +262,9 @@ public class SinglyLinkedList<E> implements Cloneable {
 
         System.out.println("tHE SECOND TO LAST");
         System.out.println(list.FindSecondLast().getElement().toString());
-        list.removeLast();
-        System.out.println(list.toString());
 
-        System.out.println(list.FindSecondLast().getElement().toString());
-
+        //test getCount
+        System.out.println("Count of nodes is " + list.getCount());
 
     }
 
@@ -283,6 +282,22 @@ public class SinglyLinkedList<E> implements Cloneable {
         }
         return walk;
     }
+
+    /* Returns count of nodes in linked list */
+    private int getCountRec(Node<E> node) {
+        // Base case
+        if (node == null)
+            return 0;
+
+        // Count is this node plus rest of the list
+        return 1 + getCountRec(node.next);
+    }
+
+    /* Wrapper over getCountRec() */
+    private int getCount() {
+        return getCountRec(head);
+    }
+
 }
 
 
