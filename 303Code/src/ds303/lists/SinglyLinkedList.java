@@ -248,23 +248,25 @@ public class SinglyLinkedList<E> implements Cloneable {
     // ******* demo ******
     public static void main(String[] args) {
         SinglyLinkedList list = new SinglyLinkedList();
-        for (int i = 5; i >= 1; i--) {
+        for (int i = 6; i >= 1; i--) {
             list.addFirst(i);
             System.out.println(list.toString());
         }
-        System.out.println("Count of nodes is " + list.getCount());
-        list.removeFirst();
-        System.out.println(list.toString());
+
+//        System.out.println("Count of nodes is " + list.getCount());
         list.removeFirst();
         System.out.println(list.toString());
         list.removeLast();
         System.out.println(list.toString());
 
         System.out.println("tHE SECOND TO LAST");
-        System.out.println(list.FindSecondLast().getElement().toString());
+        //System.out.println(list.FindSecondLast().getElement().toString());
 
-        //test getCount
-        System.out.println("Count of nodes is " + list.getCount());
+        //FindSecondLast();
+
+        list.addFirst(2);
+        list.addFirst(1);
+        System.out.println(list.toString());
 
     }
 
@@ -281,21 +283,6 @@ public class SinglyLinkedList<E> implements Cloneable {
             walk = walk.next;
         }
         return walk;
-    }
-
-    /* Returns count of nodes in linked list */
-    private int getCountRec(Node<E> node) {
-        // Base case
-        if (node == null)
-            return 0;
-
-        // Count is this node plus rest of the list
-        return 1 + getCountRec(node.next);
-    }
-
-    /* Wrapper over getCountRec() */
-    private int getCount() {
-        return getCountRec(head);
     }
 
 }
