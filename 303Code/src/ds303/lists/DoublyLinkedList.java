@@ -242,10 +242,12 @@ public class DoublyLinkedList<E> {
         return sb.toString();
     }
 
-    /*Describe a method for finding the middle node of a doubly linked list with header
-   and trailer sentinels by “link hopping,” and without relying on explicit knowledge
-   of the size of the list. In the case of an even number of nodes, report the node
-   slightly left of center as the “middle.” What is the running time of this method?*/
+    /**
+     * Describe a method for finding the middle node of a doubly linked list with header
+     * and trailer sentinels by “link hopping,” and without relying on explicit knowledge
+     * of the size of the list. In the case of an even number of nodes, report the node
+     * slightly left of center as the “middle.” What is the running time of this method?
+     **/
     // middle method
     private Node<E> middle() {
         if (size == 0)
@@ -259,6 +261,7 @@ public class DoublyLinkedList<E> {
         return middle;
     }
 
+
     //demo
     public static void main(String[] args) {
         DoublyLinkedList list = new DoublyLinkedList();
@@ -266,6 +269,7 @@ public class DoublyLinkedList<E> {
             list.addFirst(i);
             System.out.println(list.toString());
         }
+
 
         //System.out.println(list.middle().getElement().toString());
     }
