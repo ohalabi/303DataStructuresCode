@@ -11,7 +11,6 @@ public class BST {
             myTree.insert(key);
         }
         //Integer data[] = new Integer[5];
-
 /*		for (int i = 0; i < 5; i++)
 		{
 			int r = (int)(Math.random() * 100) + 1;
@@ -20,7 +19,6 @@ public class BST {
 			myTree.insert(r);
 		}*/
 
-        System.out.println("count: " + myTree.count());
         myTree.inorder();
         myTree.preorder();
         myTree.postorder();
@@ -29,20 +27,6 @@ public class BST {
         myTree.inorder();
         System.out.println(25 + " data found: " + myTree.search(25));
 
-        myTree.preorder();
-        myTree.postorder();
 
-        //count
-        System.out.println("count: " + myTree.count());
-        myTree.printLeaves();
-
-        myTree.reverseRecursive();
-        myTree.inorder();
-
-        myTree.reverseIterative();
-        myTree.inorder();
-
-        //count nodes within a range
-        myTree.countNodes(15, 25);
     }
 }
