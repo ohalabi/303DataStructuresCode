@@ -227,6 +227,101 @@ public class BinaryTree<E extends Comparable<E>> {
         root.display();
     }
 
+    /**
+     * To class Tree, add method count( ), which return how many nodes in the tree.
+     *
+     * @return int
+     */
+    //To class Tree, add method count( ), which return how many nodes in the tree.
+    public int count() {
+        return countNodes(root);
+    }
+
+    private int countNodes(Node<E> root) {
+        if (root == null)
+            return 0;
+        else
+            return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+
+    /**
+     * To class Tree, add printLeaves( ), which prints all leaves in the tree.
+     *
+     * @param
+     * @return void
+     */
+    public void printLeaves() {
+        System.out.print("Print Leaves:");
+        printAllLeaves(root);
+        System.out.println();
+    }
+
+    private void printAllLeaves(Node<E> root) {
+        if (root != null)
+            if (root.left == null && root.right == null)
+                root.display();
+            else {
+                printAllLeaves(root.left);
+                printAllLeaves(root.right);
+            }
+    }
+
+    /**
+     * Reversing a Binary Tree
+     */
+    public void reverseRecursive() {
+        System.out.print("Reversing BST Recursively...");
+        reverseRecursiveAll(root);
+        System.out.println();
+    }
+
+    private void reverseRecursiveAll(Node<E> root) {
+        if (root == null) {
+            return;
+        }
+
+        Node<E> temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        reverseRecursiveAll(root.left);
+        reverseRecursiveAll(root.right);
+    }
+
+
+    /**
+     * Count the nodes of a binary search tree within a range
+     *
+     * @param low
+     * @param high
+     */
+    public void countNodes(E low, E high) {
+        System.out.print("Count Nodes in BST within " + low + " and " + high + ": ");
+        System.out.println(countNodesAll(root, low, high));
+    }
+
+    // Function to count nodes in the BST that lie within a given range
+    private int countNodesAll(Node<E> root, E low, E high) {
+        // base case
+        if (root == null) {
+            return 0;
+        }
+
+        // keep track of the total number of nodes in the tree rooted with `root`
+        // that lies within the current range [low, high]
+        int count = 0;
+
+        // increment count if the current node lies within the current range
+        if (low.compareTo(root.data) <= 0 && high.compareTo(root.data) >= 0) {
+            count += 1;
+        }
+
+        // recur for the left subtree
+        count += countNodesAll(root.left, low, high);
+
+        // recur for the right subtree and return the total count
+        return count + countNodesAll(root.right, low, high);
+    }
 
 }
 

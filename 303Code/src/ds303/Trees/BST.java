@@ -20,13 +20,20 @@ public class BST {
 		}*/
 
         myTree.inorder();
-        myTree.preorder();
-        myTree.postorder();
-        System.out.println("delete 12 ");
-        myTree.delete(12);
-        myTree.inorder();
         System.out.println(25 + " data found: " + myTree.search(25));
 
+        myTree.preorder();
+        myTree.postorder();
 
+        //count
+        System.out.println("count: " + myTree.count());
+        myTree.printLeaves();
+
+        myTree.reverseRecursive();
+        myTree.inorder();
+
+
+        //count nodes within a range
+        myTree.countNodes(15, 25);
     }
 }
