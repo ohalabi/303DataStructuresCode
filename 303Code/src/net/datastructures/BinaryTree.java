@@ -4,20 +4,22 @@ package net.datastructures;
 // Basic generic binary search tree (BST) implementation that supports insert() and
 // delete() operations, accepting objects that implement the Comparable interface.
 
-class Node<E> {
-    E data;
-    Node<E> left, right;
-
-    Node(E data) {
-        this.data = data;
-    }
-
-    public void display() {
-        System.out.print(data + " ");
-    }
-}
-
 public class BinaryTree<E extends Comparable<E>> {
+
+    private class Node<E> {
+        E data;
+        Node<E> left;
+        Node<E> right;
+
+        Node(E data) {
+            this.data = data;
+        }
+
+        public void display() {
+            System.out.print(data + " ");
+        }
+    }
+
     private Node<E> root;
 
     /**
@@ -64,7 +66,7 @@ public class BinaryTree<E extends Comparable<E>> {
         root = delete(root, data);
     }
 
-    private Node<E> delete(Node<E> root, E data) {
+    public Node<E> delete(Node<E> root, E data) {
         // if the root node is null, then either there's nothing to delete or no more traversal is necessary
         if (root == null) {
             return null;
