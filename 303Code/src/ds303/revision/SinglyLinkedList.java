@@ -1,6 +1,8 @@
-package ds303.lists;
+package ds303.revision;
 
-public class SinglyLinkedList<E> implements Cloneable {
+import net.datastructures.LinkedStack;
+
+public class SinglyLinkedList<E extends Comparable<E>> implements Cloneable {
     //---------------- nested Node class ----------------
 
     /**
@@ -24,6 +26,11 @@ public class SinglyLinkedList<E> implements Cloneable {
     public SinglyLinkedList() {
     }              // constructs an initially empty list
 
+    public Node<E> getHead() {
+        return head;
+    }
+
+    // update methods
 
     /**
      * Tests whether the linked list is empty.
@@ -53,8 +60,6 @@ public class SinglyLinkedList<E> implements Cloneable {
         if (isEmpty()) return null;
         return tail.getElement();
     }
-
-    // update methods
 
     /**
      * Adds an element to the front of the list.
@@ -114,7 +119,6 @@ public class SinglyLinkedList<E> implements Cloneable {
         size--;
         return answer;
     }
-
 
     /**
      * Returns the number of elements in the linked list.
@@ -185,6 +189,109 @@ public class SinglyLinkedList<E> implements Cloneable {
         return sb.toString();
     }
 
+    /* Write a recursive function to count the number of nodes in a given singly linked list */
+//    private int getCountRec(Node<E> node) {
+//        // Base case
+//        if (node == null)
+//            return 0;
+//
+//        // Count is this node plus rest of the list
+//        return 1 + getCountRec(node.next);
+//    }
+//
+//    /* Wrapper over getCountRec() */
+//    private int getCount() {
+//        return getCountRec(head);
+//    }
+
+    /**
+     * Given a singly linked list of N nodes.
+     * The task is to find the middle of the linked list. For example, if the linked list is
+     * 1-> 2->3->4->5, then the middle node of the list is 3.
+     * If there are two middle nodes(in case, when N is even), print the second middle element.
+     * For example, if the linked list given is 1->2->3->4->5->6, then the middle node of the list is 4.
+     **/
+    public E getMiddle() {
+        // Your code here.
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return (E) slow.getElement();
+    }
+
+
+    /**
+     * Given a linked list sorted in increasing order,
+     * write a function that removes duplicate nodes from it by traversing the list only once.
+     * For example, the list {1, 2, 2, 2, 3, 4, 4, 5} should be converted into
+     * the list {1, 2, 3, 4, 5}.
+     **/
+    public void removeDup() {
+        Node<E> current = head;
+        // compare the current node with the next node
+        while (current != null && current.next != null) {
+            if (current.getElement() == current.next.getElement()) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;    // only advance if no deletion
+            }
+        }
+        tail = current; //super error!!
+    }
+
+    /**
+     * You are given a Singly Linked List that holds integers. Write a method
+     * arrangeOddEven(SinglyLinkedList list) that takes a SinglyLinkedList as a parameter.
+     * The method should rearrange the elements of the linked list such that all the odd elements appear
+     * before the even elements. Your implementation should use a stack to accomplish this task.
+     * <p>
+     * Example input: 1 -> 2 -> 4 -> 8 -> 5
+     * Example output: 1 -> 5 -> 8 -> 4 -> 2
+     **/
+    public void arrangeOddEven(SinglyLinkedList list) {
+        LinkedStack<E> stack = new LinkedStack<>();
+        for (int i = 0; i < list.size(); i++) {
+            E num = (E) list.removeFirst();
+            if ((Integer) num % 2 == 0) {
+                stack.push(num);
+            } else {
+                list.addLast(num);
+            }
+        }
+        while (!stack.isEmpty()) {
+            list.addLast(stack.pop());
+        }
+    }
+
+    /**
+     * Bubble sorting algorithm for a list
+     */
+    public void sort() {
+        if (head == null || head.next == null) {
+            return; // empty or only one element in the list, no need to sort
+        }
+        boolean swapped;
+        Node<E> current;
+        do {
+            swapped = false;
+            current = head;
+            while (current.next != null) {
+                E elem = current.getElement();
+                if (elem.compareTo(current.next.getElement()) > 0) {
+                    // swap current and current.next
+                    E temp = current.getElement();
+                    current.element = current.next.getElement();
+                    current.next.element = temp;
+                    swapped = true;
+                }
+                current = current.next;
+            }
+        } while (swapped);
+    }
+
     /**
      * Node of a singly linked list, which stores a reference to its
      * element and to the subsequent node in the list (or null if this
@@ -244,56 +351,6 @@ public class SinglyLinkedList<E> implements Cloneable {
             next = n;
         }
     } //----------- end of nested Node class -----------
-
-    // ******* demo ******
-    public static void main(String[] args) {
-        SinglyLinkedList list = new SinglyLinkedList();
-        for (int i = 6; i >= 1; i--) {
-            list.addFirst(i);
-            System.out.println(list.toString());
-        }
-
-//        System.out.println("Count of nodes is " + list.getCount());
-//        list.removeFirst();
-//        System.out.println(list.toString());
-//        list.removeLast();
-//        System.out.println(list.toString());
-
-        System.out.println("THE SECOND TO LAST");
-        System.out.println(list.FindSecondLast().getElement().toString());
-
-
-//        list.addFirst(2);
-//        list.addFirst(1);
-//        System.out.println(list.toString());
-    }
-
-    // access methods
-
-    /**
-     * Get second to last element in singly linked list
-     **/
-//    private Node<E> FindSecondLast() {
-//        if (size < 2)
-//            throw new IllegalStateException("list must have 2 or more entries");
-//        Node<E> walk = head;
-//        while (walk.next.next != null) {
-//            walk = walk.next;
-//        }
-//        return walk;
-//    }
-    private Node<E> FindSecondLast() {
-        if (size < 2)
-            throw new IllegalStateException("list must have 2 or more entries");
-        Node<E> walk = head.next;
-        Node<E> walknext = walk.next;
-        while (walknext.next != null) {
-            walk = walk.next;
-            walknext = walknext.next;
-        }
-        return walk;
-    }
-
 }
 
 
