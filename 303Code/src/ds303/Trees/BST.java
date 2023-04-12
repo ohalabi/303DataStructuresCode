@@ -6,7 +6,7 @@ public class BST {
     public static void main(String[] args) {
         BinaryTree<Integer> myTree = new BinaryTree<>();
 
-        Integer[] keys = {15, 10, 20, 8, 12, 25};
+        int[] keys = {10, 7, 15, 5, 8, 12, 20, 6, 18, 14};
         for (Integer key : keys) {
             myTree.insert(key);
         }
@@ -24,7 +24,10 @@ public class BST {
 
         myTree.preorder();
         myTree.postorder();
+        myTree.inorder();
 
+        myTree.delete(15);
+        myTree.preorder();
         //count
         System.out.println("count: " + myTree.count());
         myTree.printLeaves();
@@ -34,6 +37,7 @@ public class BST {
 
 
         //count nodes within a range
-        myTree.countNodes(15, 25);
+
     }
+
 }

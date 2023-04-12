@@ -94,7 +94,7 @@ public class LinkedStack<E> implements Stack<E> {
         return list.removeFirst();
     }
 
-    /**
+     /**
      * Produces a string representation of the contents of the stack.
      * (ordered from top to bottom)
      * <p>
