@@ -38,7 +38,7 @@ public class HeapPQ {
             System.out.print("remove top: ");
             pq.removeMax().display();
         }
-        System.out.println("just adding new line to test github");
+        System.out.println("just adding new line to test githubjust");
         System.out.println("pq size: " + pq.size());
 
     }
